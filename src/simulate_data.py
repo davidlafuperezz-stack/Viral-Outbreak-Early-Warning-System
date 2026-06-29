@@ -299,3 +299,5 @@ print("Outbreak distribution:")
 print(df["outbreak_7d"].value_counts(normalize=True))
 print()
 print(df.head())
+
+python src/simulate_data.py
