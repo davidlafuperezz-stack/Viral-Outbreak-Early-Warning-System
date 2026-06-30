@@ -334,7 +334,7 @@ These notebooks are intended to provide a paper-style narrative describing both 
 Clone the repository:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Viral-Outbreak-Early-Warning-System.git
+git clone https://github.com/davidlafuperezz-stack/Viral-Outbreak-Early-Warning-System.git
 ```
 
 Move into the project directory:
