@@ -1,0 +1,9 @@
+{
+    "target": "outbreak_7d",
+    "decision_threshold": 0.5,
+    "test_size": 0.2,
+    "temporal_split_date": "2023-10-16 00:00:00",
+    "test_rows": 859,
+    "test_positive_rate": 0.6437718277066357,
+    "evaluation_type": "temporal holdout"
+}
