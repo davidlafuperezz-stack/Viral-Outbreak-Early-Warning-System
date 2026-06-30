@@ -325,7 +325,6 @@ def main() -> None:
         best_model=best_model,
     )
 
-#Después ejecútalo así: python src/train_model.py Antes recuerda ejecutar:python src/simulate_data.py
 
 if __name__ == "__main__":
     main()
