@@ -1,63 +1,91 @@
 # Viral Outbreak Early Warning System
 
-> End-to-end machine learning pipeline for synthetic epidemiological surveillance and early outbreak prediction using spatio-temporal simulation, environmental variables and explainable AI.
+<p align="center">
+
+![Python](https://img.shields.io/badge/Python-3.11-blue?logo=python)
+![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Machine%20Learning-orange?logo=scikitlearn)
+![Status](https://img.shields.io/badge/Project-Completed-success)
+![License](https://img.shields.io/badge/License-Apache%202.0-green)
+
+</p>
 
 ---
 
-## Project Overview
-
-This project presents a complete epidemiological surveillance system capable of predicting regional viral outbreak risk **7 days in advance** using synthetic epidemiological data.
-
-The dataset is generated through a stochastic spatial simulation that incorporates:
-
-- Regional disease transmission
-- Human mobility
-- Vaccination dynamics
-- Environmental conditions
-- Healthcare system pressure
-- Imported cases
-- Public health interventions
-
-The resulting dataset is then used to train multiple machine learning models capable of identifying future outbreak risk.
+> **End-to-end machine learning pipeline for synthetic epidemiological surveillance and early outbreak prediction using spatio-temporal simulation, environmental variables and explainable AI.**
 
 ---
 
-## Motivation
+# Overview
 
-Early detection of infectious disease outbreaks is essential for public health decision-making.
+Early detection of infectious disease outbreaks is essential for timely public health interventions.
 
-Real surveillance data are often:
+However, real epidemiological datasets are often:
 
 - confidential
 - incomplete
-- geographically limited
+- geographically restricted
+- difficult to reproduce
 
-This project generates a realistic synthetic dataset that reproduces many epidemiological processes while remaining completely reproducible.
+This project addresses these limitations by building a **fully synthetic epidemiological surveillance system** capable of simulating realistic outbreak dynamics across multiple regions.
+
+The generated dataset is then used to train machine learning models capable of predicting **viral outbreak risk seven days in advance**.
+
+The entire pipeline is fully reproducible and includes:
+
+- Synthetic epidemic simulation
+- Feature engineering
+- Machine learning
+- Model evaluation
+- Explainable AI
+- Automated reporting
+- Publication-style notebooks
 
 ---
 
-# Project Pipeline
+# Project Highlights
+
+- End-to-end epidemiological surveillance pipeline
+- Synthetic spatio-temporal epidemic simulation
+- Dynamic Rt modelling
+- Spatial diffusion network
+- Environmental and climate effects
+- Mobility and vaccination modelling
+- Healthcare pressure simulation
+- Imported infection dynamics
+- Temporal feature engineering
+- Time-aware train/test split (prevents data leakage)
+- Multiple machine learning algorithms
+- Explainable AI using SHAP and permutation importance
+- Automated evaluation reports
+- Publication-style documentation
+
+---
+
+# Pipeline
 
 ```
 Synthetic Epidemic Simulation
             │
             ▼
-Generated Epidemiological Dataset
+Synthetic Epidemiological Dataset
             │
             ▼
 Feature Engineering
             │
             ▼
-Machine Learning Models
+Machine Learning
             │
             ▼
 Model Evaluation
             │
             ▼
-Explainability (SHAP + Feature Importance)
+Explainable AI
             │
             ▼
-Figures & Report
+Visual Reports
+            │
+            ▼
+Publication-style Notebooks
 ```
 
 ---
@@ -67,7 +95,6 @@ Figures & Report
 ```
 Viral-Outbreak-Early-Warning-System/
 
-│
 ├── data/
 │   ├── raw/
 │   └── processed/
@@ -75,6 +102,10 @@ Viral-Outbreak-Early-Warning-System/
 ├── models/
 │
 ├── notebooks/
+│   ├── 01_data_generation.ipynb
+│   ├── 02_exploratory_data_analysis.ipynb
+│   ├── 03_model_training.ipynb
+│   └── 04_model_explainability.ipynb
 │
 ├── reports/
 │   ├── figures/
@@ -83,6 +114,7 @@ Viral-Outbreak-Early-Warning-System/
 ├── src/
 │   ├── simulate_data.py
 │   ├── train_model.py
+│   ├── evaluate_model.py
 │   ├── visualize_results.py
 │   └── explainability.py
 │
@@ -93,71 +125,79 @@ Viral-Outbreak-Early-Warning-System/
 
 ---
 
-# Dataset
+# Synthetic Dataset
 
-The synthetic dataset includes variables describing:
+The simulation generates a daily regional epidemiological dataset including more than thirty variables describing disease transmission, mobility, environmental conditions and healthcare system dynamics.
 
-### Epidemiological
+## Epidemiological Variables
 
 - Reported cases
 - True infections
 - Effective reproduction number (Rt)
 - Effective transmission rate
-- Spatial transmission pressure
+- Spatial infection pressure
 - Imported infections
+- Incidence per 100,000 inhabitants
 
-### Environmental
+## Environmental Variables
 
 - Temperature
 - Humidity
 - Rainfall
 
-### Demographic
+## Population Variables
 
 - Population
 - Population density
 
-### Healthcare
+## Healthcare Variables
 
 - Healthcare capacity
 - Healthcare pressure
 - Testing rate
 
-### Mobility
+## Mobility Variables
 
 - Mobility index
 - Vaccination rate
-- Intervention status
+- Public health intervention status
 
-### Temporal Features
+## Temporal Features
 
 - Lagged cases
 - Rolling averages
+- Rolling standard deviations
 - Growth rates
 
-### Prediction Target
+## Prediction Target
 
 ```
 outbreak_7d
 ```
 
-Binary prediction indicating whether the region is expected to experience an outbreak within the next seven days.
+Binary classification indicating whether the region is expected to experience an outbreak within the next seven days.
 
 ---
 
-# Machine Learning Models
+# Machine Learning
 
-Three different algorithms are evaluated:
+Three supervised learning algorithms are evaluated.
 
-- Logistic Regression
-- Random Forest
-- Gradient Boosting
+| Model | Purpose |
+|--------|---------|
+| Logistic Regression | Baseline interpretable model |
+| Random Forest | Non-linear ensemble |
+| Gradient Boosting | Sequential boosting model |
 
-The best-performing model is automatically saved for later use.
+The best-performing model is automatically saved for downstream analysis.
 
 ---
 
 # Model Evaluation
+
+To better reproduce real epidemiological forecasting, the project uses a **temporal train/test split** instead of a random split.
+
+This prevents future observations from leaking into the training dataset.
 
 Performance is evaluated using:
 
@@ -168,59 +208,142 @@ Performance is evaluated using:
 - ROC AUC
 - Precision-Recall AUC
 
-A temporal train/test split is used to avoid data leakage.
+---
+
+# Model Performance
+
+| Model | ROC AUC | PR AUC | Recall | F1-score |
+|--------|--------:|--------:|--------:|--------:|
+| Logistic Regression | 0.668 | 0.761 | 0.642 | 0.690 |
+| Random Forest | 0.661 | 0.760 | 0.698 | 0.713 |
+| Gradient Boosting | 0.630 | 0.722 | **0.910** | **0.777** |
+
+The Gradient Boosting model achieved the highest recall, making it particularly suitable for an early warning scenario where detecting potential outbreaks is generally more important than minimizing false positives.
 
 ---
 
-# Explainable AI
+# Evaluation Outputs
 
-Model interpretation includes:
+Running the evaluation pipeline automatically generates:
+
+```
+reports/tables/
+
+model_performance_metrics.csv
+
+classification_reports.json
+
+final_model_metrics.csv
+
+final_classification_report.csv
+
+final_confusion_matrix.csv
+
+threshold_analysis.csv
+
+evaluation_metadata.json
+
+test_set_predictions.csv
+
+```
+
+---# Explainable AI
+
+Predictive performance alone is not sufficient in healthcare applications.
+
+For this reason, the project includes several explainability techniques to better understand how the trained models make predictions.
+
+The explainability pipeline includes:
 
 - Permutation Importance
-- Model Feature Importance
-- SHAP Summary Plot
+- Model-based Feature Importance (when supported)
+- SHAP Summary Analysis
+- Threshold Sensitivity Analysis
 
-These analyses help identify the variables contributing most strongly to outbreak prediction.
+These methods help identify the variables that contribute most strongly to predicted outbreak risk.
 
 ---
 
 # Generated Figures
 
-Running the pipeline automatically generates:
+The pipeline automatically generates publication-quality figures.
 
-```
-reports/figures/
+## Epidemiological Simulation
 
-outbreak_distribution.png
+<img src="reports/figures/outbreak_distribution.png" width="700">
 
-reported_cases_over_time.png
+<img src="reports/figures/reported_cases_over_time.png" width="700">
 
-regional_case_trajectories.png
+<img src="reports/figures/regional_case_trajectories.png" width="700">
 
-feature_correlation_matrix.png
+---
 
-model_performance.png
+## Exploratory Data Analysis
 
-model_ranking_pr_auc.png
+<img src="reports/figures/feature_correlation_matrix.png" width="700">
 
-permutation_importance.png
+---
 
-model_feature_importance.png
+## Machine Learning Performance
 
-shap_summary.png
-```
+<img src="reports/figures/model_performance.png" width="700">
+
+<img src="reports/figures/model_ranking_pr_auc.png" width="700">
+
+---
+
+## Final Model Evaluation
+
+<img src="reports/figures/confusion_matrix.png" width="700">
+
+<img src="reports/figures/roc_curve.png" width="700">
+
+<img src="reports/figures/precision_recall_curve.png" width="700">
+
+<img src="reports/figures/threshold_analysis.png" width="700">
+
+---
+
+## Explainability
+
+<img src="reports/figures/permutation_importance.png" width="700">
+
+<img src="reports/figures/model_feature_importance.png" width="700">
+
+<img src="reports/figures/shap_summary.png" width="700">
+
+---
+
+# Publication-Style Notebooks
+
+The repository includes four notebooks documenting every stage of the project.
+
+| Notebook | Description |
+|----------|-------------|
+| 01_data_generation.ipynb | Synthetic epidemiological simulation |
+| 02_exploratory_data_analysis.ipynb | Exploratory data analysis |
+| 03_model_training.ipynb | Machine learning training and comparison |
+| 04_model_explainability.ipynb | Explainability and SHAP analysis |
+
+These notebooks are intended to provide a paper-style narrative describing both the methodology and the results.
 
 ---
 
 # Installation
 
-Clone the repository
+Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/Viral-Outbreak-Early-Warning-System.git
+git clone https://github.com/YOUR_USERNAME/Viral-Outbreak-Early-Warning-System.git
 ```
 
-Install dependencies
+Move into the project directory:
+
+```bash
+cd Viral-Outbreak-Early-Warning-System
+```
+
+Install dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -228,27 +351,33 @@ pip install -r requirements.txt
 
 ---
 
-# Running the Project
+# Running the Complete Pipeline
 
-Generate the dataset
+Generate the synthetic dataset:
 
 ```bash
 python src/simulate_data.py
 ```
 
-Train the models
+Train the machine learning models:
 
 ```bash
 python src/train_model.py
 ```
 
-Generate visualizations
+Evaluate the best model:
+
+```bash
+python src/evaluate_model.py
+```
+
+Generate visualizations:
 
 ```bash
 python src/visualize_results.py
 ```
 
-Run explainability analysis
+Run explainability analysis:
 
 ```bash
 python src/explainability.py
@@ -269,39 +398,81 @@ python src/explainability.py
 
 ---
 
+# Potential Applications
+
+Although this project uses synthetic data, the methodology can be adapted to:
+
+- Infectious disease surveillance
+- Hospital resource planning
+- Public health decision support
+- Healthcare analytics
+- Epidemiological forecasting
+- Early warning systems
+
+---
+
 # Future Improvements
 
 Possible future extensions include:
 
-- Graph Neural Networks
 - XGBoost
 - LightGBM
+- CatBoost
+- Graph Neural Networks
 - Bayesian epidemiological models
-- Real-world public datasets
+- Real-world epidemiological datasets
 - Docker deployment
-- Interactive dashboard with Streamlit
+- CI/CD with GitHub Actions
+- Streamlit dashboard
 - Azure Machine Learning deployment
+- MLflow experiment tracking
+- Hyperparameter optimization with Optuna
+
+---
+
+# Project Limitations
+
+This project has several important limitations.
+
+- The dataset is entirely synthetic.
+- Disease transmission dynamics are simplified compared with real epidemiological processes.
+- Model performance depends on the assumptions used during simulation.
+- Explainability methods identify statistical associations rather than causal relationships.
+- The models have not been validated using real-world surveillance datasets.
+
+These limitations are acknowledged to encourage transparent interpretation of the results.
 
 ---
 
 # Disclaimer
 
-The dataset generated in this project is entirely synthetic.
+This repository is intended for educational and research purposes only.
 
-It has been designed exclusively for educational purposes and machine learning experimentation and should not be interpreted as representing any real-world epidemiological event.
+The generated dataset does **not** represent real patients, real outbreaks or real public health events.
+
+The project should not be used for clinical or public health decision-making without appropriate validation using real epidemiological data.
 
 ---
 
-# Author
+# About the Author
 
 **David Lafuente Pérez**
 
-Biotechnology Graduate | MSc in Virology
+BSc Biotechnology • MSc Virology
 
 Interested in:
 
 - Data Science
 - Machine Learning
-- Bioinformatics
-- Epidemiology
 - Healthcare Analytics
+- Epidemiology
+- Bioinformatics
+- Artificial Intelligence
+
+---
+
+## Contact
+
+If you have suggestions, questions or would like to collaborate, feel free to open an Issue or submit a Pull Request.
+
+If you found this project interesting, consider giving the repository a ⭐.
